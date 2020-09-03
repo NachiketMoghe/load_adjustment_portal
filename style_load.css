@@ -1,0 +1,85 @@
+body{
+	margin: 0;
+	padding: 10px;
+	font-family: sans-serif;
+	background: #636e76;
+}
+
+.container{
+	position: absolute;
+	text-align: left;
+	width: 470px;
+	height: 1130px;
+	border-radius: 5px;
+	box-shadow: 0px 3px 6px rgba(255,255,255,0.4);
+	background: #fbf8ec;
+	padding: 15px 15px;
+	margin-top: 265px;
+	margin-bottom: 50px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.container img{
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 100px;
+	height: 100px;
+	transform: translateX(-50%) translateY(-60px);
+	background: #636e76;
+	padding: 8px;
+	border-radius: 50%;
+}
+
+.container h2{
+	margin-top: 50px;
+	text-align: center;
+	font-size:30px;
+	font-weight: 700;
+	color: #000; 
+	text-transform: capitalize;
+}
+
+.container form input[type="text"]{
+	width: 97%;
+	color: #999;
+	font-size: 15px;
+	box-sizing: border-box;
+	box-shadow: none;
+	outline: none;
+	border: none;
+	border-bottom: 1.7px solid #999;
+	padding: 12px 10px;
+	background: transparent; 
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.container form input[type="submit"]{
+	width: 100%;
+	height: 40px;
+	background: #a90329;
+	border-radius: 20px;
+	text-transform: uppercase;
+	color: white;
+	margin: 20px 0px;
+	cursor: pointer;
+}
+
+.container form input[type="submit"]:hover{
+	background: #8f0222 ;
+}
+
+.container form input[type="text"]:focus{
+	color: #000;
+	border-bottom: 1px solid #a90329;
+}
+
+.heading{
+	font-size:20px;
+	font-weight:500;
+	color: #000; 
+	text-transform: capitalize;
+}
