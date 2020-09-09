@@ -1,0 +1,30 @@
+{
+  "name": "load_adjustment_portal",
+  "version": "1.0.0",
+  "description": "College Internship",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NachiketMoghe/load_adjustment_portal.git"
+  },
+  "author": "Nachiket",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NachiketMoghe/load_adjustment_portal/issues"
+  },
+  "homepage": "https://github.com/NachiketMoghe/load_adjustment_portal#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "fs": "0.0.1-security",
+    "mongoose": "^5.10.3",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^6.0.1"
+  }
+}
