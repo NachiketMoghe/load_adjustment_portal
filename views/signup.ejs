@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="style_signup.css">
+		<link rel="stylesheet" type="text/css" href="/css/style_signup.css">
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>SignUp Form</title>
@@ -9,14 +9,14 @@
 	</head>
 	<body>
 		<div class="center">
-			<img src="logo.png">
-			<form action="#">
+			<img src="/css/logo.png">
+			<form action="/signup" method="POST">
 				<h2>SignUp</h2>
-				<input type="text" placeholder="Firstname" required="">
-				<input type="text" placeholder="Lastname" required="">
-				<input type="email" placeholder="Email" required="">
-				<input type="text" placeholder="Username" required="">
-				<input type="Password" placeholder="Password" required="">
+				<input type="text" placeholder="Firstname" name="firstname" required="">
+				<input type="text" placeholder="Lastname" name="lastname" required="">
+				<input type="email" placeholder="Email ID" name="email" required="">
+				<input type="text" placeholder="Username" name="username" required="">
+				<input type="Password" placeholder="Password" name="password" required="">
 				<input type="Submit" value="SignUp"> 
 			</form>
 
