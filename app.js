@@ -5,6 +5,7 @@ var passport = require('passport');
 var User = require("./models/user");
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
+const { request } = require('express');
 
 
 mongoose.set('useNewUrlParser', true);
@@ -25,7 +26,7 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+passport.use(new LocalStrategy(User.authenticate()));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 
@@ -41,14 +42,11 @@ app.get("/", function(req,res){
     res.render('home');
 });
 
-app.get("/load_form", function(req, res){
+app.get("/load_form", isLoggedIn, function(req, res){
     res.render('load_adjust_form');
 });
 
-app.get("/login", function(req,res){
-    res.render('login');
-});
-
+// SIGNUP
 
 app.get("/signup", function(req,res){
     res.render('signup');
@@ -71,6 +69,34 @@ app.post("/signup", function(req,res){
         });
     });
 });
+
+// LOGIN
+
+app.get("/login", function(req,res){
+    res.render('login');
+});
+// Login Logic
+// Middleware
+app.post("/login", passport.authenticate("local", {
+   successRedirect: "/load_form",
+   failureRedirect: "/login"
+}) ,function(req,res){
+});
+
+app.get("/logout", function(req,res){
+    req.logout();
+    res.redirect("/");
+});
+
+
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
+
+
 app.listen(process.env.PORT||3000, process.env.ip, function(){
     console.log('Server Activated..');
 });
