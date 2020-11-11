@@ -8,7 +8,7 @@
 <body>
 	<div class="container">
 		<img src="/css/logo.png">
-			<form action="#">
+			<form action="/Index.php" method="post">
 				<h2>Load Adjustment Form</h2>
 				<label class="heading">Name of HOD</label>
 				<select name="HOD">
@@ -20,27 +20,27 @@
 				</select>
 				<br><br>
 
-				<input type="text" placeholder="Day">
+				<input type="text" placeholder="Day" name="Day">
 				<br><br>
 
 				<label class="heading">Date</label><br>
-				<input type="Date">
+				<input type="Date" name="Date">
 				<br><br>
 
-				<input type="text" placeholder="Name of Faculty">
+				<input type="text" placeholder="Name of Faculty" name="Faculty_Name">
 				<br><br>
 
-				<input type="text" placeholder="Employee Code">
+				<input type="text" placeholder="Employee Code" name="E_Code">
 				<br><br>
 
-				<input type="text" placeholder="Course Short Name">
+				<input type="text" placeholder="Course Short Name" name="Course_Name">
 				<br><br>
 
-				<input type="text" placeholder="Name of filling in faculty">
+				<input type="text" placeholder="Name of filling in faculty" name="Substitute">
 				<br><br>
 
 				<label class="heading">Replacement Slot Time</label>
-				<select>
+				<select name="Slot">
 					<option value="9:30">9:30</option>
 					<option value="10:30">10:30</option>
 					<option value="11:30">11:30</option>
