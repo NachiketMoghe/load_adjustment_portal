@@ -57,8 +57,10 @@ app.post("/signup", function(req,res){
     req.body.firstname
     req.body.lastname
     req.body.email
+    req.body.ecode
+    req.body.branch
     req.body.password
-    User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email
+    User.register(new User({username: req.body.username, firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, ecode: req.body.ecode, branch: req.body.branch
     }), req.body.password, function(err, user){
         if(err){
             console.log(err);
