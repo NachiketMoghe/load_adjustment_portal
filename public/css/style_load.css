@@ -9,7 +9,7 @@ body{
 	position: absolute;
 	text-align: left;
 	width: 470px;
-	height: 1130px;
+	height: 1170px;
 	border-radius: 5px;
 	box-shadow: 0px 3px 6px rgba(255,255,255,0.4);
 	background: #fbf8ec;
@@ -64,9 +64,10 @@ body{
 	border-radius: 20px;
 	text-transform: uppercase;
 	color: white;
-	margin: 20px 0px;
+	margin: 20px 0px 10px 0px;
 	cursor: pointer;
 }
+
 
 .container form input[type="submit"]:hover{
 	background: #8f0222 ;
@@ -82,4 +83,15 @@ body{
 	font-weight:500;
 	color: #000; 
 	text-transform: capitalize;
+}
+
+.logout{
+	width: 100%;
+	height: 40px;
+	background: #a90329;
+	border-radius: 20px;
+	text-transform: uppercase;
+	color: white;
+	margin-bottom: 10px;
+	cursor: pointer;
 }
