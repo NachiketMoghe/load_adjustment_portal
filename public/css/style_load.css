@@ -68,22 +68,7 @@ body{
 	cursor: pointer;
 }
 
-.container form a{
-	width: 100%;
-	height: 40px;
-	background: #a90329;
-	border-radius: 20px;
-	text-transform: uppercase;
-	color: white;
-	margin: 20px 0px 10px 0px;
-	cursor: pointer;
-}
-
 .container form input[type="submit"]:hover{
-	background: #8f0222 ;
-}
-
-.container form a:hover{
 	background: #8f0222 ;
 }
 
@@ -99,7 +84,7 @@ body{
 	text-transform: capitalize;
 }
 
-.logout{
+.container form input[type="button"]{
 	width: 100%;
 	height: 40px;
 	background: #a90329;
@@ -108,4 +93,8 @@ body{
 	color: white;
 	margin-bottom: 10px;
 	cursor: pointer;
+}
+
+.container form input[type="button"]:hover{
+	background: #8f0222 ;
 }

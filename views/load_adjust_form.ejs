@@ -28,13 +28,13 @@
 				<input type="Date" name="Date">
 				<br><br>
 
-				<input type="text" placeholder="Name of Faculty" name="Faculty_Name">
+				<input type="text" placeholder="Name of Faculty" name="Faculty_Name" value="<%= currentUser.firstname %> <%= currentUser.lastname %>">
 				<br><br>
 
-				<input type="text" placeholder="Employee Code" name="E_Code">
+				<input type="text" placeholder="Employee Code" name="E_Code" value="<%= currentUser.ecode %>">
 				<br><br>
 
-				<input type="text" placeholder="Email ID" name="email1">
+				<input type="text" placeholder="Email ID" name="email1" value="<%= currentUser.email %>">
 				<br><br>
 
 				<input type="text" placeholder="Course Short Name" name="Course_Name">
@@ -54,35 +54,36 @@
 				<input type="text" placeholder="Email ID" name="email2">
 				<br><br>
 
-				<label class="heading">Replacement Slot Time</label>
-				<select name="Slot">
-					<option value="9:30">9:30</option>
-					<option value="10:30">10:30</option>
-					<option value="11:30">11:30</option>
-					<option value="1:15">1:15</option>
-					<option value="2:15">2:15</option>
-					<option value="3:15">3:15</option>
-					<option value="4:15">4:15</option>
-				</select>
-				<br><br>
-
 				<label class="heading">Type</label><br>
-				<input type="radio"value="Lecture" name="type" required="" onclick="batch()">
+				<input type="radio"value="Lecture" name="type" required="" onclick="lecture()">
 	  			<label for="Lecture">Lecture</label><br>
 	  			<input type="radio"value="Tutorial" name="type" required="">
 	  			<label for="Tutorial">Tutorial</label><br>
-	  			<input type="radio"value="Practical" name="type" required="" onclick="duration()">
+	  			<input type="radio"value="Practical" name="type" required="" onclick="practical()">
 	  			<label for="Practical">Practical</label><br>
-	  			<input type="radio"value="Workshop" name="type" required="" onclick="duration()">
+	  			<input type="radio"value="Workshop" name="type" required="" onclick="workshop()">
 	  			<label for="Workshop">Workshop</label>
 	  			<br><br>
 
 	  			<label class="heading">Duration</label><br>
-				<input type="radio"value="1 Hour" name="Duration" required="">
+				<input type="radio" value="1 Hour" name="Duration" required="">
 	  			<label for="1 Hour">1 Hour</label>
-	  			<input type="radio"value="2 Hour" name="Duration" required="">
+	  			<input type="radio" value="2 Hour" name="Duration" required="">
 	  			<label for="2 Hour">2 Hour</label>
-	  			<br><br>
+				<br><br>
+				  
+				<label class="heading">Replacement Slot Time</label>
+				<select id="slot" name="Slot" onclick="tutSlot()">
+					<option hidden>Select Slot Timing</option>
+					<option hidden value="9:30">9:30</option>
+					<option hidden value="10:30">10:30</option>
+					<option hidden value="11:30">11:30</option>
+					<option hidden value="1:15">1:15</option>
+					<option hidden value="2:15">2:15</option>
+					<option hidden value="3:15">3:15</option>
+					<option hidden value="4:15">4:15</option>
+				</select>
+				<br><br>
 
 	  			<label class="heading">Year</label><br>
 				<input type="radio" value="FY" name="Year" required="">
@@ -134,11 +135,12 @@
 	  			<label for="B4">B4</label>
 
 				<input type="Submit" value="Submit"></input>
-				<a class="logout" href="/logout">Logout</a>
+				<a href="/logout"><input type="button" value="Logout"></input></a>
 			</form>
     </div>
 
 	<script>
+
     	function func(){
             var x = document.getElementById('HOD').value
             var y = document.getElementById('fill')
@@ -283,26 +285,245 @@
                 y.replaceChild(opt5, y.childNodes[11])
             }
         }
-		
-		function batch() {
-            var lecture = document.getElementsByName('type')[0].value
-            if(lecture = "Lecture") {
-                for(i=0;i<8;i++){
-					document.getElementsByName('Batch')[i].removeAttribute('required')
-					document.getElementsByName('Duration')[1].removeAttribute('checked')
-					document.getElementsByName('Duration')[0].setAttribute('checked', '')
-                }   
-            }
-       }
 	
-	    function duration() {
-			var practical = document.getElementsByName('type')[2].value
-			var workshop = document.getElementsByName('type')[3].value
-            if(practical === "Practical" || workshop === 'Workshop') {
-				document.getElementsByName('Duration')[1].setAttribute('checked', '')
-				document.getElementsByName('Duration')[0].removeAttribute('checked')
-			} 
+		function lecture() {
+			// for batch
+			for(i=0;i<8;i++){
+				document.getElementsByName('Batch')[i].removeAttribute('required')
+			}   
+
+			// for duration
+			document.getElementsByName('Duration')[1].removeAttribute('checked')
+			document.getElementsByName('Duration')[0].setAttribute('checked', '')
+
+			// for slot
+			var slot = document.getElementById('slot')
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('9.30-10.30')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '9.30-10.30')
+			slot.replaceChild(opt1, slot.childNodes[3])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('10.30-11.30')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '10.30-11.30')
+			slot.replaceChild(opt1, slot.childNodes[5])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('11.30-12.30')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '11.30-12.30')
+			slot.replaceChild(opt1, slot.childNodes[7])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('1.15-2.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '1.15-2.15')
+			slot.replaceChild(opt1, slot.childNodes[9])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('2.15-3.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '2.15-3.15')
+			slot.replaceChild(opt1, slot.childNodes[11])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('3.15-4.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '3.15-4.15')
+			slot.replaceChild(opt1, slot.childNodes[13])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('4.15-5.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '4.15-5.15')
+			slot.replaceChild(opt1, slot.childNodes[15])
 		}
+		
+		function tutSlot() {
+			var slot = document.getElementById('slot')
+
+			// for tutorial slot of one hour
+			if(document.getElementsByName('type')[1].checked && 
+			   document.getElementsByName('Duration')[0].checked) 
+			{
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('9.30-10.30')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '9.30-10.30')
+				slot.replaceChild(opt1, slot.childNodes[3])
+
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('10.30-11.30')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '10.30-11.30')
+				slot.replaceChild(opt1, slot.childNodes[5])
+
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('11.30-12.30')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '11.30-12.30')
+				slot.replaceChild(opt1, slot.childNodes[7])
+
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('1.15-2.15')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '1.15-2.15')
+				slot.replaceChild(opt1, slot.childNodes[9])
+
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('2.15-3.15')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '2.15-3.15')
+				slot.replaceChild(opt1, slot.childNodes[11])
+
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('3.15-4.15')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '3.15-4.15')
+				slot.replaceChild(opt1, slot.childNodes[13])
+
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('4.15-5.15')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '4.15-5.15')
+				slot.replaceChild(opt1, slot.childNodes[15])
+			}
+
+			// for tutorial slot of two hour
+			else if(document.getElementsByName('type')[1].checked && 
+			   document.getElementsByName('Duration')[1].checked) 
+			{
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('10.30-12.30')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '10.30-12.30')
+				slot.replaceChild(opt1, slot.childNodes[3])
+
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('1.15-3.15')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '1.15-3.15')
+				slot.replaceChild(opt1, slot.childNodes[5])
+
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('2.15-4.15')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '2.15-4.15')
+				slot.replaceChild(opt1, slot.childNodes[7])
+
+				var opt1 = document.createElement('option')
+				var text1 = document.createTextNode('3.15-5.15')
+				opt1.appendChild(text1)
+				opt1.setAttribute('value', '3.15-5.15')
+				slot.replaceChild(opt1, slot.childNodes[9])
+
+				var opt1 = document.createElement('option')
+				opt1.setAttribute('hidden', '')
+				slot.replaceChild(opt1, slot.childNodes[11])
+
+				var opt1 = document.createElement('option')
+				opt1.setAttribute('hidden', '')
+				slot.replaceChild(opt1, slot.childNodes[13])
+
+				var opt1 = document.createElement('option')
+				opt1.setAttribute('hidden', '')
+				slot.replaceChild(opt1, slot.childNodes[15])
+			}
+		}
+		
+		function practical() {
+			// for duration
+			document.getElementsByName('Duration')[1].setAttribute('checked', '')
+			document.getElementsByName('Duration')[0].removeAttribute('checked')
+
+			//for slot
+			var slot = document.getElementById('slot')
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('10.30-12.30')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '10.30-12.30')
+			slot.replaceChild(opt1, slot.childNodes[3])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('1.15-3.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '1.15-3.15')
+			slot.replaceChild(opt1, slot.childNodes[5])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('2.15-4.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '2.15-4.15')
+			slot.replaceChild(opt1, slot.childNodes[7])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('3.15-5.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '3.15-5.15')
+			slot.replaceChild(opt1, slot.childNodes[9])
+
+			var opt1 = document.createElement('option')
+			opt1.setAttribute('hidden', '')
+			slot.replaceChild(opt1, slot.childNodes[11])
+
+			var opt1 = document.createElement('option')
+			opt1.setAttribute('hidden', '')
+			slot.replaceChild(opt1, slot.childNodes[13])
+
+			var opt1 = document.createElement('option')
+			opt1.setAttribute('hidden', '')
+			slot.replaceChild(opt1, slot.childNodes[15])
+		}
+
+		function workshop() {
+			// for duration
+			document.getElementsByName('Duration')[1].setAttribute('checked', '')
+			document.getElementsByName('Duration')[0].removeAttribute('checked')
+
+			//for slot
+			var slot = document.getElementById('slot')
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('10.30-12.30')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '10.30-12.30')
+			slot.replaceChild(opt1, slot.childNodes[3])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('1.15-3.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '1.15-3.15')
+			slot.replaceChild(opt1, slot.childNodes[5])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('2.15-4.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '2.15-4.15')
+			slot.replaceChild(opt1, slot.childNodes[7])
+
+			var opt1 = document.createElement('option')
+			var text1 = document.createTextNode('3.15-5.15')
+			opt1.appendChild(text1)
+			opt1.setAttribute('value', '3.15-5.15')
+			slot.replaceChild(opt1, slot.childNodes[9])
+			
+			var opt1 = document.createElement('option')
+			opt1.setAttribute('hidden', '')
+			slot.replaceChild(opt1, slot.childNodes[11])
+
+			var opt1 = document.createElement('option')
+			opt1.setAttribute('hidden', '')
+			slot.replaceChild(opt1, slot.childNodes[13])
+
+			var opt1 = document.createElement('option')
+			opt1.setAttribute('hidden', '')
+			slot.replaceChild(opt1, slot.childNodes[15])
+		}
+		
 	</script>
 
 </body>

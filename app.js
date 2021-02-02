@@ -33,6 +33,10 @@ app.use(express.static(__dirname + '/public'));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(function(req,res, next){
+    res.locals.currentUser = req.user;
+    next();
+});
 // ++++++++++
 // Routes   +
 // ++++++++++
@@ -43,7 +47,7 @@ app.get("/", function(req,res){
 });
 
 app.get("/load_form", isLoggedIn, function(req, res){
-    res.render('load_adjust_form');
+    res.render('load_adjust_form',{currentUser: req.user});
 });
 
 // SIGNUP
