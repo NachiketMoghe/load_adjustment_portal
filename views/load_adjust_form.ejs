@@ -40,7 +40,7 @@
 				<input type="text" placeholder="Course Short Name" name="Course_Name">
 				<br><br>
 
-				<label class="heading">Filling in faculty: </label>
+				<!-- <label class="heading">Filling in faculty: </label>
 				<select id="fill" name="Substitute">
 					<option hidden>Select the Filling in Faculty</option>
 					<option hidden>Faculty 1</option>
@@ -52,7 +52,24 @@
                 <br><br>
 
 				<input type="text" placeholder="Email ID" name="email2">
-				<br><br>
+                <br><br> -->
+                
+
+
+
+
+                <label class="heading">Filling in faculty: </label>
+				<select id="fill" name="Substitute" onchange="fillingEmail()">
+					<option hidden>Select the Filling in Faculty</option>
+					<option hidden>Faculty 1</option>
+					<option hidden>Faculty 2</option>
+					<option hidden>Faculty 3</option>
+					<option hidden>Faculty 4</option>
+					<option hidden>Faculty 5</option>
+				</select>
+                <br><br>
+
+				<label style="font-size: 20px;" name="email2">Email of Filling in Faculty: <br><div id="createTextbox"></div></label><br><br>
 
 				<label class="heading">Type</label><br>
 				<input type="radio"value="Lecture" name="type" required="" onclick="lecture()">
@@ -144,32 +161,33 @@
     	function func(){
             var x = document.getElementById('HOD').value
             var y = document.getElementById('fill')
-
+            
             if(x === 'nachiket.moghe@somaiya.edu'){
+                
                 var opt1 = document.createElement('option')
-                var text1 = document.createTextNode('IT Faculty 1')
+                var text1 = document.createTextNode('Nachiket Moghe')
 				opt1.appendChild(text1)
-				opt1.setAttribute('value', 'IT Faculty 1')
+				opt1.setAttribute('value', 'Nachiket Moghe')
                 y.replaceChild(opt1, y.childNodes[3])
                 var opt2 = document.createElement('option')
-                var text2 = document.createTextNode('IT Faculty 2')
+                var text2 = document.createTextNode('Dhundiraj Jogalekar')
 				opt2.appendChild(text2)
-				opt2.setAttribute('value', 'IT Faculty 2')
+				opt2.setAttribute('value', 'Dhundiraj Jogalekar')
                 y.replaceChild(opt2, y.childNodes[5])
                 var opt3 = document.createElement('option')
-                var text3 = document.createTextNode('IT Faculty 3')
+                var text3 = document.createTextNode('Keval Karani')
 				opt3.appendChild(text3)
-				opt3.setAttribute('value', 'IT Faculty 3')
+				opt3.setAttribute('value', 'Keval Karani')
                 y.replaceChild(opt3, y.childNodes[7])
                 var opt4 = document.createElement('option')
-                var text4 = document.createTextNode('IT Faculty 4')
+                var text4 = document.createTextNode('Viraj Joshi')
 				opt4.appendChild(text4)
-				opt4.setAttribute('value', 'IT Faculty 4')
+				opt4.setAttribute('value', 'Viraj Joshi')
                 y.replaceChild(opt4, y.childNodes[9])
                 var opt5 = document.createElement('option')
-                var text5 = document.createTextNode('IT Faculty 5')
+                var text5 = document.createTextNode('Onkar Sanap')
 				opt5.appendChild(text5)
-				opt5.setAttribute('value', 'IT Faculty 5')
+				opt5.setAttribute('value', 'Onkar Sanap')
 				y.replaceChild(opt5, y.childNodes[11])
             }
 
@@ -523,7 +541,32 @@
 			opt1.setAttribute('hidden', '')
 			slot.replaceChild(opt1, slot.childNodes[15])
 		}
-		
+        function fillingEmail() {
+            var fill = document.getElementById('fill').value
+            
+            if (fill === 'Nachiket Moghe'){
+                createTextbox.innerHTML = createTextbox.innerHTML +"<br><input type='email' name='email2' value='nachiket.moghe@somaiya.edu'>"
+
+            }
+            else if (fill === 'Dhundiraj Jogalekar'){
+                createTextbox.innerHTML = createTextbox.innerHTML +"<br><input type='email' name='email2' value='dhundiraj.j@somaiya.edu'>"
+
+            }
+            else if (fill === 'Keval Karani'){
+                createTextbox.innerHTML = createTextbox.innerHTML +"<br><input type='email' name='email2' value='keval.dk@somaiya.edu'>"
+
+            }
+            else if (fill === 'Viraj Joshi'){
+                createTextbox.innerHTML = createTextbox.innerHTML +"<br><input type='email' name='email2' value='viraj.joshi@somaiya.edu'>"
+
+            }
+            else if (fill === 'Onkar Sanap'){
+                createTextbox.innerHTML = createTextbox.innerHTML +"<br><input type='email' name='email2' value='onkar.sanap@somaiya.edu'>"
+
+            }
+		}
+	
+	</script>
 	</script>
 
 </body>
